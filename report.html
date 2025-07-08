@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Studente - MateGenius 2.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0KOVEMQNogNjeASiDdq9VNB+JaEW5SVds4cnBFrSX0PALsBKlotSy" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Stili specifici per la pagina di report se necessari */
+        .progress-bar-bg { background-color: #e5e7eb; }
+        .progress-bar { background-color: #4f46e5; transition: width 0.5s ease-in-out; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="w-full max-w-4xl mx-auto p-4 md:p-8">
+        <header class="mb-8">
+            <div class="flex justify-between items-center">
+                <h1 class="text-3xl font-extrabold text-gray-800">Report Studente</h1>
+                <a href="index.html" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors">Torna ai Problemi</a>
+            </div>
+            <p class="text-gray-600 mt-2">Riepilogo dei tuoi progressi in MateGenius 2.0.</p>
+        </header>
+
+        <main id="report-content">
+            <!-- Riepilogo Generale -->
+            <section class="bg-white p-6 rounded-xl shadow-lg mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Riepilogo Generale</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    <div>
+                        <div class="text-sm text-gray-500">NOME STUDENTE</div>
+                        <div id="student-name" class="text-xl font-semibold text-indigo-600">Mario Rossi (Esempio)</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-500">PUNTEGGIO TOTALE</div>
+                        <div id="total-score" class="text-xl font-semibold text-indigo-600">1250</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-500">BADGE OTTENUTI</div>
+                        <div id="badges-earned" class="text-xl font-semibold text-amber-500">👟 🔥 💯</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progressi per Argomento/Competenza -->
+            <section class="bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Progressi per Argomento</h2>
+
+                <div class="space-y-6">
+                    <!-- Esempio di Argomento 1 -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-base font-medium text-indigo-700">Aritmetica e Algebra di Base</span>
+                            <span class="text-sm font-medium text-indigo-700">75%</span>
+                        </div>
+                        <div class="w-full progress-bar-bg rounded-full h-2.5">
+                            <div class="progress-bar h-2.5 rounded-full" style="width: 75%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Completati: 15/20 problemi. Ultima attività: Ieri.</p>
+                    </div>
+
+                    <!-- Esempio di Argomento 2 -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-base font-medium text-indigo-700">Equazioni di 2° grado</span>
+                            <span class="text-sm font-medium text-indigo-700">40%</span>
+                        </div>
+                        <div class="w-full progress-bar-bg rounded-full h-2.5">
+                            <div class="progress-bar h-2.5 rounded-full" style="width: 40%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Completati: 8/20 problemi. Ultima attività: 3 giorni fa.</p>
+                    </div>
+
+                    <!-- Esempio di Argomento 3 (da iniziare) -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-base font-medium text-gray-700">Analisi: Limiti</span>
+                            <span class="text-sm font-medium text-gray-700">0%</span>
+                        </div>
+                        <div class="w-full progress-bar-bg rounded-full h-2.5">
+                            <div class="progress-bar h-2.5 rounded-full" style="width: 0%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Nessun problema affrontato per questo argomento.</p>
+                    </div>
+                     <!-- Altri argomenti verranno aggiunti dinamicamente qui -->
+                </div>
+            </section>
+
+            <!-- Sezione Suggerimenti (Placeholder) -->
+            <section class="bg-white p-6 rounded-xl shadow-lg mt-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Aree da Migliorare e Suggerimenti</h2>
+                <div id="suggestions-area">
+                    <p class="text-gray-600">In questa sezione, l'IA analizzerà le tue performance e suggerirà esercizi mirati.</p>
+                    <ul class="list-disc list-inside mt-2 text-gray-600 space-y-1">
+                        <li>Rivedi le proprietà delle potenze (da Aritmetica e Algebra di Base).</li>
+                        <li>Concentrati sulla scomposizione dei trinomi caratteristici (per Equazioni di 2° grado).</li>
+                    </ul>
+                    <!-- I suggerimenti dinamici verranno popolati qui -->
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>&copy; 2023 MateGenius 2.0 - Sviluppato con passione per l'apprendimento.</p>
+        </footer>
+    </div>
+
+    <!-- Script per rendere la pagina dinamica in futuro (non implementato ora) -->
+    <!-- <script src="js/report.js"></script> -->
+</body>
+</html>

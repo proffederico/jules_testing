@@ -1,0 +1,23 @@
+body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+.katex-display { margin: 1em 0; }
+.option-btn {
+    border: 2px solid #e5e7eb;
+    transition: all 0.2s ease-in-out;
+}
+.option-btn:hover:not(:disabled) {
+    border-color: #4f46e5;
+    background-color: #eef2ff;
+}
+.option-btn.selected { border-color: #4f46e5; }
+.option-btn.correct { background-color: #dcfce7; border-color: #22c55e; color: #15803d; }
+.option-btn.incorrect { background-color: #fee2e2; border-color: #ef4444; color: #b91c1c; }
+.option-btn:disabled { cursor: not-allowed; }
+.badge { filter: grayscale(1); opacity: 0.5; }
+.badge.unlocked { filter: grayscale(0); opacity: 1; }
+#toast {
+    transform: translateY(150%);
+    transition: transform 0.5s ease-in-out;
+}
+#toast.show {
+    transform: translateY(0);
+}

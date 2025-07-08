@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MateGenius 2.0 - Stile Brilliant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0KOVEMQNogNjeASiDdq9VNB+JaEW5SVds4cnBFrSX0PALsBKlotSy" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="text-gray-800">
+
+    <div class="w-full max-w-4xl mx-auto p-4 md:p-8">
+
+        <!-- Header con Gamification -->
+        <header id="gamification-header" class="bg-white p-4 rounded-xl shadow-sm mb-8 grid grid-cols-2 md:grid-cols-5 gap-4 text-center items-center hidden">
+            <div>
+                <div class="text-sm text-gray-500">PUNTEGGIO</div>
+                <div id="score" class="text-2xl font-bold text-indigo-600">0</div>
+            </div>
+            <div>
+                <div class="text-sm text-gray-500">STREAK</div>
+                <div id="streak" class="text-2xl font-bold text-amber-500">0 🔥</div>
+            </div>
+            <div class="col-span-2">
+                <div class="text-sm text-gray-500 mb-1">BADGE</div>
+                <div id="badges-container" class="flex justify-center items-center space-x-2"></div>
+            </div>
+            <div class="md:col-start-5">
+                <a href="report.html" class="bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors text-sm">📄 Report</a>
+            </div>
+        </header>
+
+        <main id="app">
+            <!-- Sezione di Configurazione -->
+            <div class="bg-white p-8 rounded-xl shadow-lg" id="config-section">
+                <h1 class="text-3xl font-extrabold text-gray-800 text-center">Benvenuto in MateGenius 2.0</h1>
+                <p class="text-center text-gray-600 mt-2 mb-8">Scegli un argomento e mettiti alla prova!</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="year-select" class="block text-sm font-medium text-gray-700 mb-1">Anno di corso</label>
+                        <select id="year-select" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="">-- Seleziona un anno --</option>
+                            <option value="1">Primo Anno (Biennio)</option>
+                            <option value="2">Secondo Anno (Biennio)</option>
+                            <option value="3">Terzo Anno</option>
+                            <option value="4">Quarto Anno</option>
+                            <option value="5">Quinto Anno</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="topic-select" class="block text-sm font-medium text-gray-700 mb-1">Macroargomento</label>
+                        <select id="topic-select" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" disabled>
+                            <option>-- Seleziona prima un anno --</option>
+                        </select>
+                    </div>
+                </div>
+                 <div class="mt-6">
+                     <label for="level-select" class="block text-sm font-medium text-gray-700 mb-1">Livello di difficoltà</label>
+                     <select id="level-select" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                         <option value="Base">Base</option>
+                         <option value="Intermedio" selected>Intermedio</option>
+                         <option value="Avanzato">Avanzato</option>
+                         <option value="Ninja">Ninja 🥷</option>
+                     </select>
+                </div>
+                <div class="mt-8 text-center">
+                    <button id="start-btn" class="w-full md:w-auto bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition-colors shadow-md" disabled>Inizia Sessione</button>
+                </div>
+            </div>
+
+            <!-- Sezione del Problema -->
+            <div id="problem-container" class="hidden">
+                 <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div id="loader" class="text-center py-16 hidden">
+                        <div class="mx-auto border-4 border-t-4 border-t-indigo-500 border-gray-200 rounded-full w-12 h-12 animate-spin"></div>
+                        <p class="mt-4 text-gray-600">Creazione del problema in corso...</p>
+                    </div>
+
+                    <div id="problem-content" class="hidden">
+                        <div id="problem-text" class="text-xl leading-relaxed mb-8"></div>
+                        <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                    </div>
+                 </div>
+
+                 <!-- Area Risultato e Prossimo Problema -->
+                 <div id="result-area" class="hidden mt-6 bg-white p-6 rounded-xl shadow-lg">
+                    <h3 id="result-title" class="text-2xl font-bold"></h3>
+                    <div id="explanation-area" class="prose max-w-none mt-4"></div>
+                    <div class="mt-6 flex justify-between items-center">
+                        <button id="new-topic-btn" class="bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors">Cambia Argomento</button>
+                        <button id="next-problem-btn" class="bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors shadow-md">Prossimo Problema →</button>
+                    </div>
+                 </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast per Badge Sbloccati -->
+    <div id="toast" class="fixed bottom-8 right-8 bg-amber-400 text-black p-4 rounded-xl shadow-2xl flex items-center space-x-4">
+        <div id="toast-icon" class="text-3xl"></div>
+        <div>
+            <div class="font-bold">NUOVO BADGE SBLOCCATO!</div>
+            <div id="toast-text"></div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
